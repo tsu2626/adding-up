@@ -29,5 +29,12 @@ rl.on('line',(lineString) =>{
 });
 rl.resume();
 rl.on('close',() =>{
-    console.log(map);
+    for(let pair of map){
+        const value = pair[1];
+        value.change = value.popu15 / value.popu10;
+    }
+    const rankingArray = Array.from(map).sort((pair1,pair2) =>{
+        return pair2[1].change - pair1[1].change;
+    });
+    console.log(rankingArray);
 });
